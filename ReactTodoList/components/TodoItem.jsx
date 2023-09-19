@@ -1,4 +1,4 @@
-export default function TodoItem() {
+function TodoItem() {
     return (
         <li
             className="list-group-item
@@ -9,8 +9,15 @@ export default function TodoItem() {
         >
             <div className="d-flex me-auto">
                 <input type="checkbox" />
-                <label htmlFor="" className="form-check-label todoText"></label>
+                <label className="form-check-label todoText"></label>
             </div>
+            <button type="submit" className="btn btn-success">
+                Edit
+            </button>
+            <button type="submit" className="btn btn-danger">
+                Delete
+            </button>
         </li>
     );
 }
+export default TodoItem;
