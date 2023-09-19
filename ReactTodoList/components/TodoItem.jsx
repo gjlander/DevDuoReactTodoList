@@ -1,4 +1,9 @@
+import EditForm from "./EditForm";
+
 function TodoItem() {
+    const displayOn = "d-flex me-auto";
+    const displayOff = "d-none me-auto";
+    function editBtnHandler() {}
     return (
         <li
             className="list-group-item
@@ -7,7 +12,7 @@ function TodoItem() {
             align-items-center
             gap-1"
         >
-            <div className="d-flex me-auto">
+            <div className={displayOn}>
                 <input type="checkbox" />
                 <label className="form-check-label todoText"></label>
             </div>
