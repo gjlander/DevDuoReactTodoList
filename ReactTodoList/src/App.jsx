@@ -1,8 +1,12 @@
+import Header from "../components/Header";
+import Tasklist from "../components/Tasklist";
+
 function App() {
     return (
         <>
-            <div className="bg-primary">
-                Just want to make sure our page is not broken
+            <div className="container-fluid text-center bg-primary-subtle min-vh-100 p-4">
+                <Header />
+                <Tasklist />
             </div>
         </>
     );
