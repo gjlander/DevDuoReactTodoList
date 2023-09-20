@@ -1,9 +1,9 @@
 import EditForm from "./EditForm";
 
-function TodoItem() {
-    const displayOn = "d-flex me-auto";
-    const displayOff = "d-none me-auto";
-    function editBtnHandler() {}
+function TodoItem({ editing, setEditing }) {
+    const toggleEditing = () => {
+        setEditing((prev) => !prev);
+    };
     return (
         <li
             className="list-group-item
@@ -12,16 +12,26 @@ function TodoItem() {
             align-items-center
             gap-1"
         >
-            <div className={displayOn}>
-                <input type="checkbox" />
-                <label className="form-check-label todoText"></label>
-            </div>
-            <button type="submit" className="btn btn-success">
-                Edit
-            </button>
-            <button type="submit" className="btn btn-danger">
-                Delete
-            </button>
+            {!editing ? (
+                <>
+                    <div className="d-flex me-auto">
+                        <input type="checkbox" />
+                        <label className="form-check-label todoText"></label>
+                    </div>
+                    <button
+                        type="submit"
+                        className="btn btn-success"
+                        onClick={toggleEditing}
+                    >
+                        Edit
+                    </button>
+                    <button type="submit" className="btn btn-danger">
+                        Delete
+                    </button>
+                </>
+            ) : (
+                <EditForm toggleEditing={toggleEditing} />
+            )}
         </li>
     );
 }
