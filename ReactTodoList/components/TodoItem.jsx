@@ -1,6 +1,6 @@
 import EditForm from "./EditForm";
 
-function TodoItem({ editing, setEditing }) {
+function TodoItem({ title, editing, setEditing, handleTitleText }) {
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
@@ -14,9 +14,11 @@ function TodoItem({ editing, setEditing }) {
         >
             {!editing ? (
                 <>
-                    <div className="d-flex me-auto">
+                    <div className="d-flex me-auto gap-2">
                         <input type="checkbox" />
-                        <label className="form-check-label todoText"></label>
+                        <label className="form-check-label todoText">
+                            {title}
+                        </label>
                     </div>
                     <button
                         type="submit"
@@ -30,7 +32,11 @@ function TodoItem({ editing, setEditing }) {
                     </button>
                 </>
             ) : (
-                <EditForm toggleEditing={toggleEditing} />
+                <EditForm
+                    title={title}
+                    toggleEditing={toggleEditing}
+                    handleTitleText={handleTitleText}
+                />
             )}
         </li>
     );

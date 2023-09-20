@@ -1,7 +1,7 @@
-function EditForm({ editing, setEditing, toggleEditing }) {
+function EditForm({ title, handleTitleText, toggleEditing }) {
     return (
         <div className="input-group">
-            <input type="text" className="form-control" />
+            <input type="text" className="form-control" value={title} />
             <button
                 type="submit"
                 className="btn btn-success"
