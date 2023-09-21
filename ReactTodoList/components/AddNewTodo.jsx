@@ -11,7 +11,7 @@ function AddNewTodo({
         const newAllTodos = [
             ...allTodos,
             {
-                id: crypto.randomUUID,
+                id: crypto.randomUUID(),
                 title,
                 done: false,
             },

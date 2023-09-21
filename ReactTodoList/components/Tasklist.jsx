@@ -2,8 +2,11 @@ import { useState } from "react";
 import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
 function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
-    const [editing, setEditing] = useState(false);
+    // const [editing, setEditing] = useState(false);
 
+    // const handleEditTitle = (id)=> {
+    //     const newAllTodos = allTodos.map((todo)=> todo.id === id {...todo, title:} )
+    // }
     return (
         <div className="row justify-content-center">
             <div className="col col-lg-6">
@@ -22,9 +25,8 @@ function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
                             {...todo}
                             allTodos={allTodos}
                             setAllTodos={setAllTodos}
-                            editing={editing}
-                            setEditing={setEditing}
-                            handleTitleText={handleTitleText}
+                            // editing={editing}
+                            // setEditing={setEditing}
                         />
                     ))}
                     {/* <TodoItem
