@@ -1,6 +1,10 @@
+import { useState } from "react";
 import EditForm from "./EditForm";
 
-function TodoItem({ editing, setEditing }) {
+function TodoItem({ title }) {
+    const [editing, setEditing] = useState(false);
+    const [currentTitle, setCurrentTitle] = useState(title);
+
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
@@ -14,9 +18,11 @@ function TodoItem({ editing, setEditing }) {
         >
             {!editing ? (
                 <>
-                    <div className="d-flex me-auto">
+                    <div className="d-flex me-auto gap-2">
                         <input type="checkbox" />
-                        <label className="form-check-label todoText"></label>
+                        <label className="form-check-label todoText">
+                            {currentTitle}
+                        </label>
                     </div>
                     <button
                         type="submit"
@@ -30,7 +36,11 @@ function TodoItem({ editing, setEditing }) {
                     </button>
                 </>
             ) : (
-                <EditForm toggleEditing={toggleEditing} />
+                <EditForm
+                    currentTitle={currentTitle}
+                    setCurrentTitle={setCurrentTitle}
+                    toggleEditing={toggleEditing}
+                />
             )}
         </li>
     );
