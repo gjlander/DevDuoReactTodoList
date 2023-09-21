@@ -1,6 +1,12 @@
 function EditForm({ currentTitle, setCurrentTitle, toggleEditing }) {
     return (
-        <div className="input-group">
+        <form
+            className="input-group"
+            onSubmit={(e) => {
+                e.preventDefault();
+                toggleEditing();
+            }}
+        >
             <input
                 type="text"
                 className="form-control"
@@ -10,18 +16,18 @@ function EditForm({ currentTitle, setCurrentTitle, toggleEditing }) {
             <button
                 type="submit"
                 className="btn btn-success"
-                onClick={toggleEditing}
+                // onClick={toggleEditing}
             >
                 Confirm
             </button>
             <button
                 type="submit"
                 className="btn btn-danger"
-                onClick={toggleEditing}
+                // onClick={toggleEditing}
             >
                 Cancel
             </button>
-        </div>
+        </form>
     );
 }
 export default EditForm;
