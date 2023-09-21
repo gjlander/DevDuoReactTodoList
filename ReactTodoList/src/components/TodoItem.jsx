@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
 
-function TodoItem({ title }) {
+function TodoItem({ id, title, setAllTodos }) {
     const [editing, setEditing] = useState(false);
     const [currentTitle, setCurrentTitle] = useState(title);
 
@@ -37,6 +37,8 @@ function TodoItem({ title }) {
                 </>
             ) : (
                 <EditForm
+                    todoId={id}
+                    setAllTodos={setAllTodos}
                     currentTitle={currentTitle}
                     setCurrentTitle={setCurrentTitle}
                     toggleEditing={toggleEditing}

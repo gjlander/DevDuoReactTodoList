@@ -1,9 +1,12 @@
-import { useState } from "react";
-import Header from "../components/Header";
-import Tasklist from "../components/Tasklist";
+import { useState, useEffect } from "react";
+import Header from "./components/Header";
+import Tasklist from "./components/Tasklist";
 
 function App() {
-    const [allTodos, setAllTodos] = useState([]);
+    //usestate updated to reflect localstorage, so don't need useeffect
+    const [allTodos, setAllTodos] = useState(
+        JSON.parse(localStorage.getItem("todos")) || []
+    ); // get things from local storage here when initializing state
     const [title, setTitle] = useState("");
 
     const handleTitleText = (e) => setTitle(e.target.value);

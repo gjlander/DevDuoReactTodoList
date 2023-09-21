@@ -17,10 +17,17 @@ function AddNewTodo({
             },
         ];
         setAllTodos(newAllTodos);
+        // is always one item behind because asyncronis code. how to fix?
+        localStorage.setItem("todos", JSON.stringify(allTodos));
         setTitle("");
     };
     return (
-        <form className="input-group mb-3" onSubmit={handleNewTodoSubmit}>
+        <form
+            className="input-group mb-3"
+            onSubmit={(e) => {
+                handleNewTodoSubmit(e);
+            }}
+        >
             <input
                 type="text"
                 className="form-control"
