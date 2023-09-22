@@ -1,12 +1,23 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
 
-function TodoItem({ id, title, setAllTodos }) {
+function TodoItem({ id, done, title, setAllTodos }) {
     const [editing, setEditing] = useState(false);
-    // const [currentTitle, setCurrentTitle] = useState(title);
 
     const toggleEditing = () => {
         setEditing((prev) => !prev);
+    };
+
+    const toggleDone = () => {
+        setAllTodos((prev) =>
+            prev.map((todo) =>
+                todo.id === id ? { ...todo, done: !todo.done } : todo
+            )
+        );
+    };
+    const deleteTodo = () => {
+        //iterates through allTodos and filters the one that has id that matches the id of this todo
+        setAllTodos((prev) => prev.filter((todo) => todo.id !== id));
     };
     return (
         <li
@@ -19,8 +30,18 @@ function TodoItem({ id, title, setAllTodos }) {
             {!editing ? (
                 <>
                     <div className="d-flex me-auto gap-2">
-                        <input type="checkbox" />
-                        <label className="form-check-label todoText">
+                        <input
+                            type="checkbox"
+                            checked={done}
+                            onClick={toggleDone}
+                            id={id}
+                        />
+                        <label
+                            className={`form-check-label todoText ${
+                                done && "text-decoration-line-through"
+                            }`}
+                            htmlFor={id}
+                        >
                             {title}
                         </label>
                     </div>
@@ -31,7 +52,11 @@ function TodoItem({ id, title, setAllTodos }) {
                     >
                         Edit
                     </button>
-                    <button type="submit" className="btn btn-danger">
+                    <button
+                        type="submit"
+                        className="btn btn-danger"
+                        onClick={deleteTodo}
+                    >
                         Delete
                     </button>
                 </>
