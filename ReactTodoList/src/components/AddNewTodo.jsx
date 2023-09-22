@@ -1,10 +1,5 @@
-function AddNewTodo({
-    title,
-    setTitle,
-    handleTitleText,
-    allTodos,
-    setAllTodos,
-}) {
+function AddNewTodo({ title, setTitle, allTodos, setAllTodos }) {
+    const handleTitleText = (e) => setTitle(e.target.value);
     const handleNewTodoSubmit = (e) => {
         e.preventDefault();
         if (!title) return;

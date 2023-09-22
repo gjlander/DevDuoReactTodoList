@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
-function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
+function Tasklist({ allTodos, setAllTodos }) {
+    const [title, setTitle] = useState("");
+
     return (
         <div className="row justify-content-center">
             <div className="col col-lg-6">
@@ -17,7 +20,6 @@ function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
                         <AddNewTodo
                             title={title}
                             setTitle={setTitle}
-                            handleTitleText={handleTitleText}
                             allTodos={allTodos}
                             setAllTodos={setAllTodos}
                         />
