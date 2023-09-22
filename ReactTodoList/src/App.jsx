@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Tasklist from "./components/Tasklist";
 
@@ -21,19 +22,6 @@ function App() {
         <>
             <div className="container-fluid text-center bg-primary-subtle min-vh-100 p-4">
                 <Header />
-                <Tabs>
-                    <TabList>
-                        <Tab>Title 1</Tab>
-                        <Tab>Title 2</Tab>
-                    </TabList>
-
-                    <TabPanel>
-                        <h2>Any content 1</h2>
-                    </TabPanel>
-                    <TabPanel>
-                        <h2>Any content 2</h2>
-                    </TabPanel>
-                </Tabs>
                 <Tasklist
                     title={title}
                     setTitle={setTitle}
