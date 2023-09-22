@@ -11,16 +11,23 @@ function AddNewTodo({
         const newAllTodos = [
             ...allTodos,
             {
-                id: crypto.randomUUID(),
                 title,
                 done: false,
+                id: crypto.randomUUID(),
             },
         ];
         setAllTodos(newAllTodos);
+        // is always one item behind because asynchronis code. how to fix?
+        // localStorage.setItem("todos", JSON.stringify(allTodos));
         setTitle("");
     };
     return (
-        <form className="input-group mb-3" onSubmit={handleNewTodoSubmit}>
+        <form
+            className="input-group mb-3"
+            onSubmit={(e) => {
+                handleNewTodoSubmit(e);
+            }}
+        >
             <input
                 type="text"
                 className="form-control"

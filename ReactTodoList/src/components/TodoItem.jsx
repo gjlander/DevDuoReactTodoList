@@ -1,9 +1,9 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
 
-function TodoItem({ title }) {
+function TodoItem({ id, title, setAllTodos }) {
     const [editing, setEditing] = useState(false);
-    const [currentTitle, setCurrentTitle] = useState(title);
+    // const [currentTitle, setCurrentTitle] = useState(title);
 
     const toggleEditing = () => {
         setEditing((prev) => !prev);
@@ -21,7 +21,7 @@ function TodoItem({ title }) {
                     <div className="d-flex me-auto gap-2">
                         <input type="checkbox" />
                         <label className="form-check-label todoText">
-                            {currentTitle}
+                            {title}
                         </label>
                     </div>
                     <button
@@ -37,8 +37,11 @@ function TodoItem({ title }) {
                 </>
             ) : (
                 <EditForm
-                    currentTitle={currentTitle}
-                    setCurrentTitle={setCurrentTitle}
+                    todoId={id}
+                    todoTitle={title}
+                    setAllTodos={setAllTodos}
+                    // currentTitle={currentTitle}
+                    // setCurrentTitle={setCurrentTitle}
                     toggleEditing={toggleEditing}
                 />
             )}
