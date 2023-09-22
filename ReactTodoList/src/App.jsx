@@ -9,6 +9,11 @@ function App() {
     ); // get things from local storage here when initializing state
     const [title, setTitle] = useState("");
 
+    //useEffect to fix asynchronis problem
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(allTodos));
+    }, [allTodos]);
+
     const handleTitleText = (e) => setTitle(e.target.value);
 
     return (

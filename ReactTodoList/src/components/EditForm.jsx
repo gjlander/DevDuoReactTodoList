@@ -1,8 +1,10 @@
 function EditForm({
-    currentTitle,
-    setCurrentTitle,
+    // currentTitle,
+    // setCurrentTitle,
     toggleEditing,
     todoId,
+    todoTitle,
+    allTodos,
     setAllTodos,
 }) {
     const updateTodos = (e) => {
@@ -24,7 +26,7 @@ function EditForm({
             <input
                 type="text"
                 className="form-control"
-                value={currentTitle}
+                value={todoTitle}
                 onChange={updateTodos}
             />
             <button
