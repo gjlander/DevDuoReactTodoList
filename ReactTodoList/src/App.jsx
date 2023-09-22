@@ -11,7 +11,9 @@ function App() {
 
     //useEffect to fix asynchronis problem
     useEffect(() => {
-        localStorage.setItem("todos", JSON.stringify(allTodos));
+        allTodos.length
+            ? localStorage.setItem("todos", JSON.stringify(allTodos))
+            : localStorage.removeItem("todos");
     }, [allTodos]);
 
     const handleTitleText = (e) => setTitle(e.target.value);
