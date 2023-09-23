@@ -19,7 +19,7 @@ function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
                 />
                 <input
                     type="checkbox"
-                    // checked={done}
+                    // checked={hideDone}
                     onClick={toggleHideDone}
                     id="hideDoneBtn"
                 />{" "}
