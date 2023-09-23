@@ -1,6 +1,6 @@
 import AddNewTasklist from "./AddNewTasklist";
 function Header({
-    allTodos,
+    // allTodos,
     tasklistName,
     setTasklistName,
     tasklists,
@@ -11,7 +11,7 @@ function Header({
             <div className="col-8 bg-primary rounded p-3">
                 <h1 className="display-4 fw-bold">To Do List</h1>
                 <AddNewTasklist
-                    allTodos={allTodos}
+                    // allTodos={allTodos}
                     tasklists={tasklists}
                     setTasklists={setTasklists}
                     tasklistName={tasklistName}

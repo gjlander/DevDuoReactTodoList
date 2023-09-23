@@ -7,7 +7,7 @@ function App() {
         JSON.parse(localStorage.getItem("tasklists")) || []
     );
     const [tasklistName, setTasklistName] = useState("");
-    const [allTodos, setAllTodos] = useState([]);
+    // const [allTodos, setAllTodos] = useState([]);
 
     useEffect(() => {
         tasklists.length
@@ -23,11 +23,11 @@ function App() {
                     setTasklists={setTasklists}
                     tasklistName={tasklistName}
                     setTasklistName={setTasklistName}
-                    allTodos={allTodos}
+                    // allTodos={allTodos}
                 />
                 <Tasklist
-                    allTodos={allTodos}
-                    setAllTodos={setAllTodos}
+                    // allTodos={allTodos}
+                    // setAllTodos={setAllTodos}
                     tasklists={tasklists}
                     setTasklists={setTasklists}
                 />

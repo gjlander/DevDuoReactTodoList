@@ -1,15 +1,41 @@
 function AddNewTodo({
     title,
     setTitle,
-    allTodos,
-    setAllTodos,
+    // allTodos,
+    // setAllTodos,
     setTasklists,
-    listId,
+    id,
 }) {
     const handleTitleText = (e) => setTitle(e.target.value);
+
+    //updated to use tasklist, but still depended on allTodos-but this worked with them all synced up
+    //oh but wait, this is where the logic broke down-listId was undefined
+    // const handleNewTodoSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (!title) return;
+    //     const newAllTodos = [
+    //         ...allTodos,
+    //         {
+    //             title,
+    //             done: false,
+    //             id: crypto.randomUUID(),
+    //         },
+    //     ];
+    //     setAllTodos(newAllTodos);
+    //     setTasklists((prev) =>
+    //         prev.map((tasklist) =>
+    //             tasklist.id === listId
+    //                 ? { ...tasklist, items: [...newAllTodos] }
+    //                 : tasklist
+    //         )
+    //     );
+    //     setTitle("");
+    // };
+
     const handleNewTodoSubmit = (e) => {
         e.preventDefault();
         if (!title) return;
+
         const newAllTodos = [
             ...allTodos,
             {
@@ -21,7 +47,7 @@ function AddNewTodo({
         setAllTodos(newAllTodos);
         setTasklists((prev) =>
             prev.map((tasklist) =>
-                tasklist.id === listId
+                tasklist.id === id
                     ? { ...tasklist, items: [...newAllTodos] }
                     : tasklist
             )

@@ -3,7 +3,11 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
-function Tasklist({ allTodos, setAllTodos, tasklists, setTasklists }) {
+function Tasklist({
+    // allTodos, setAllTodos,
+    tasklists,
+    setTasklists,
+}) {
     const [title, setTitle] = useState("");
     const [hideDone, setHideDone] = useState(false);
     const toggleHideDone = () => {
@@ -29,8 +33,8 @@ function Tasklist({ allTodos, setAllTodos, tasklists, setTasklists }) {
                             </h2>
                             <input
                                 type="checkbox"
-                                // checked={hideDone}
                                 onClick={toggleHideDone}
+                                // checked={hideDone}
                                 // id="hideDoneBtn"
                             />
                             <label
@@ -41,19 +45,19 @@ function Tasklist({ allTodos, setAllTodos, tasklists, setTasklists }) {
                             <AddNewTodo
                                 title={title}
                                 setTitle={setTitle}
-                                allTodos={allTodos}
-                                setAllTodos={setAllTodos}
                                 setTasklists={setTasklists}
+                                // allTodos={allTodos}
+                                // setAllTodos={setAllTodos}
                             />
                             <ul className="list-group bg-light h-100 taskList">
-                                {allTodos &&
-                                    allTodos.map((todo) => (
+                                {tasklists &&
+                                    tasklists.map((tasklist) => (
                                         <TodoItem
-                                            key={todo.id}
-                                            {...todo}
-                                            allTodos={allTodos}
-                                            setAllTodos={setAllTodos}
+                                            key={tasklist.id}
+                                            {...tasklist}
                                             hideDone={hideDone}
+                                            // allTodos={allTodos}
+                                            // setAllTodos={setAllTodos}
                                         />
                                     ))}
                             </ul>
