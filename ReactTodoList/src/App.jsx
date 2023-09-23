@@ -3,17 +3,17 @@ import Header from "./components/Header";
 import Tasklist from "./components/Tasklist";
 
 function App() {
-    const [tasklists, setTasklists] = useState([]);
-    const [tasklistName, setTasklistName] = useState("");
-    const [allTodos, setAllTodos] = useState(
-        JSON.parse(localStorage.getItem("todos")) || []
+    const [tasklists, setTasklists] = useState(
+        JSON.parse(localStorage.getItem("tasklists")) || []
     );
+    const [tasklistName, setTasklistName] = useState("");
+    const [allTodos, setAllTodos] = useState([]);
 
     useEffect(() => {
-        allTodos.length
-            ? localStorage.setItem("todos", JSON.stringify(allTodos))
-            : localStorage.removeItem("todos");
-    }, [allTodos]);
+        tasklists.length
+            ? localStorage.setItem("tasklists", JSON.stringify(tasklists))
+            : localStorage.removeItem("tasklists");
+    }, [tasklists]);
 
     return (
         <>

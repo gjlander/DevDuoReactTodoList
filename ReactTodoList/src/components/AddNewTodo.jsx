@@ -1,4 +1,11 @@
-function AddNewTodo({ title, setTitle, allTodos, setAllTodos }) {
+function AddNewTodo({
+    title,
+    setTitle,
+    allTodos,
+    setAllTodos,
+    setTasklists,
+    listId,
+}) {
     const handleTitleText = (e) => setTitle(e.target.value);
     const handleNewTodoSubmit = (e) => {
         e.preventDefault();
@@ -12,6 +19,13 @@ function AddNewTodo({ title, setTitle, allTodos, setAllTodos }) {
             },
         ];
         setAllTodos(newAllTodos);
+        setTasklists((prev) =>
+            prev.map((tasklist) =>
+                tasklist.id === listId
+                    ? { ...tasklist, items: [...newAllTodos] }
+                    : tasklist
+            )
+        );
         setTitle("");
     };
     return (

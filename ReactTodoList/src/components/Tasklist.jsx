@@ -28,6 +28,7 @@ function Tasklist({ allTodos, setAllTodos, tasklists, setTasklists }) {
                                 setTitle={setTitle}
                                 allTodos={allTodos}
                                 setAllTodos={setAllTodos}
+                                setTasklists={setTasklists}
                             />
                             <ul className="list-group bg-light h-100 taskList">
                                 {allTodos &&
