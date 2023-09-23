@@ -6,6 +6,7 @@ function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
     const toggleHideDone = () => {
         setHideDone((prev) => !prev);
     };
+
     return (
         <div className="row justify-content-center">
             <div className="col col-lg-6">
@@ -22,7 +23,7 @@ function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
                     // checked={hideDone}
                     onClick={toggleHideDone}
                     id="hideDoneBtn"
-                />{" "}
+                />
                 <label htmlFor="hideDoneBtn">Hide Done</label>
                 <ul className="list-group bg-light h-100 taskList">
                     {allTodos &&
