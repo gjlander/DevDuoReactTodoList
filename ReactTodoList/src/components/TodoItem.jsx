@@ -3,21 +3,21 @@ import EditForm from "./EditForm";
 
 function TodoItem({ id, done, title, setAllTodos, hideDone }) {
     const [editing, setEditing] = useState(false);
-
+   
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
 
-    const toggleDone = () => {
-        setAllTodos((prev) =>
-            prev.map((todo) =>
-                todo.id === id ? { ...todo, done: !todo.done } : todo
-            )
-        );
-    };
-    const deleteTodo = () => {
-        //iterates through allTodos and filters the one that has id that matches the id of this todo
+    const onDelete = () => {
+        //make a new array that filters out only the todo we want to delete
         setAllTodos((prev) => prev.filter((todo) => todo.id !== id));
+    };
+    const toggleDone = () => {
+        setAllTodos ((prev) =>
+        prev.map((todo) =>
+            todo.id === id  ? {...todo, done: !done} : todo
+        )
+      )
     };
     return (
         <li
@@ -52,11 +52,7 @@ function TodoItem({ id, done, title, setAllTodos, hideDone }) {
                     >
                         Edit
                     </button>
-                    <button
-                        type="submit"
-                        className="btn btn-danger"
-                        onClick={deleteTodo}
-                    >
+                    <button type="submit" className="btn btn-danger" onClick={onDelete}>
                         Delete
                     </button>
                 </>
@@ -65,8 +61,6 @@ function TodoItem({ id, done, title, setAllTodos, hideDone }) {
                     todoId={id}
                     todoTitle={title}
                     setAllTodos={setAllTodos}
-                    // currentTitle={currentTitle}
-                    // setCurrentTitle={setCurrentTitle}
                     toggleEditing={toggleEditing}
                 />
             )}
