@@ -46,6 +46,7 @@ function Tasklist({
                                 title={title}
                                 setTitle={setTitle}
                                 setTasklists={setTasklists}
+                                tasklists={tasklists}
                                 // allTodos={allTodos}
                                 // setAllTodos={setAllTodos}
                             />
@@ -56,6 +57,7 @@ function Tasklist({
                                             key={tasklist.id}
                                             {...tasklist}
                                             hideDone={hideDone}
+                                            setTasklists={setTasklists}
                                             // allTodos={allTodos}
                                             // setAllTodos={setAllTodos}
                                         />

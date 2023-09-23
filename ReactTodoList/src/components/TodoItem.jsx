@@ -1,23 +1,66 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
-
-function TodoItem({ id, done, title, setAllTodos, hideDone }) {
+//this is what I mean, simply passing id here gave a reference to the id of the current todoitem-why didn't that work for the tasklist id?
+function TodoItem({
+    id,
+    done,
+    title,
+    hideDone,
+    tasklists,
+    setTasklists,
+    listid,
+    //setAllTodos,
+}) {
     const [editing, setEditing] = useState(false);
-
+    //idea to grab easier reference to items-resync like I did with Editform-badly written-breaks the page
+    // const [currentItems, setCurrentItems] = useState(tasklists.items);
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
 
     const toggleDone = () => {
-        setAllTodos((prev) =>
-            prev.map((todo) =>
-                todo.id === id ? { ...todo, done: !todo.done } : todo
+        // setAllTodos((prev) =>
+        //     prev.map((todo) =>
+        //         todo.id === id ? { ...todo, done: !todo.done } : todo
+        //     )
+        // );
+        //untested logic because earlier pieces are broken
+        //version 1-using local useState
+        //how to reference id of item vs tasklist id?
+        setCurrentItems((prev) =>
+            prev.map((item) =>
+                item.id === id ? { ...item, done: !item.done } : item
+            )
+        );
+        setTasklists((prev) =>
+            prev.map((tasklist) =>
+                tasklist.listid === listid
+                    ? { ...tasklist, items: currentItems }
+                    : tasklist
+            )
+        );
+        //version 2 without it
+        setTasklists((prev) =>
+            prev.map((tasklist) =>
+                tasklist.items.id === id
+                    ? { ...tasklist.items, done: !tasklist.items.done }
+                    : tasklist
             )
         );
     };
     const deleteTodo = () => {
-        //iterates through allTodos and filters the one that has id that matches the id of this todo
-        setAllTodos((prev) => prev.filter((todo) => todo.id !== id));
+        //old verion
+        // setTasklists((prev) => prev.filter((todo) => todo.id !== id));
+
+        //not sure how to update this without using local useState
+        setCurrentItems((prev) => prev.filter((item) => item.id !== id));
+        setTasklists((prev) =>
+            prev.map((tasklist) =>
+                tasklist.listid === listid
+                    ? { ...tasklist, items: currentItems }
+                    : tasklist
+            )
+        );
     };
     return (
         <li
@@ -64,10 +107,12 @@ function TodoItem({ id, done, title, setAllTodos, hideDone }) {
                 <EditForm
                     todoId={id}
                     todoTitle={title}
-                    setAllTodos={setAllTodos}
-                    // currentTitle={currentTitle}
-                    // setCurrentTitle={setCurrentTitle}
                     toggleEditing={toggleEditing}
+                    currentItems={currentItems}
+                    setCurrentItems={setCurrentItems}
+                    setTasklists={setTasklists}
+                    listid={listid}
+                    // setAllTodos={setAllTodos}
                 />
             )}
         </li>
