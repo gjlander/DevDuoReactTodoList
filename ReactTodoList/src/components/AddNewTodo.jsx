@@ -4,7 +4,8 @@ function AddNewTodo({
     allTodos,
     setAllTodos,
     setTasklists,
-    listId,
+    // tasklists,
+    listid,
 }) {
     const handleTitleText = (e) => setTitle(e.target.value);
     const handleNewTodoSubmit = (e) => {
@@ -20,12 +21,30 @@ function AddNewTodo({
         ];
         setAllTodos(newAllTodos);
         setTasklists((prev) =>
-            prev.map((tasklist) =>
-                tasklist.id === listId
+            prev.map((tasklist) => {
+                console.log(tasklist.id);
+                tasklist.id === listid
                     ? { ...tasklist, items: [...newAllTodos] }
-                    : tasklist
-            )
+                    : tasklist;
+            })
         );
+        // const currentTasklist = tasklists.filter(
+        //     (tasklist) => tasklist.id === listid
+        // );
+
+        // const newItems = [
+        //     ...currentTasklist.items,
+        //     { title, done: false, id: crypto.randomUUID() },
+        // ];
+        // console.log("currentTasklist", currentTasklist);
+        // console.log("newItems", newItems);
+        // setTasklists((prev) =>
+        //     prev.map((tasklist) => {
+        //         tasklist.id === listid
+        //             ? { ...tasklist, items: [...newItems] }
+        //             : tasklist;
+        //     })
+        // );
         setTitle("");
     };
     return (

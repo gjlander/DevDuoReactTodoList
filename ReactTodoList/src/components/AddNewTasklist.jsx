@@ -13,8 +13,10 @@ export default function AddNewTasklist({
             ...tasklists,
             {
                 tasklistName,
-                items: [...allTodos],
-                listId: crypto.randomUUID(),
+                //start as empty array
+                items: [],
+                listid: crypto.randomUUID(),
+                tabkey: crypto.randomUUID(),
             },
         ];
         setTasklists(newTasklists);

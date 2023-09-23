@@ -5,14 +5,13 @@ import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
 function Tasklist({ allTodos, setAllTodos, tasklists, setTasklists }) {
     const [title, setTitle] = useState("");
-
     return (
         <div className="row justify-content-center">
             <div className="col col-lg-6">
                 <Tabs>
                     <TabList>
                         {tasklists.map((tasklist) => (
-                            <Tab key={tasklist.tasklistName} {...tasklist}>
+                            <Tab key={tasklist.tabkey}>
                                 {tasklist.tasklistName}
                             </Tab>
                         ))}
@@ -28,18 +27,18 @@ function Tasklist({ allTodos, setAllTodos, tasklists, setTasklists }) {
                                 setTitle={setTitle}
                                 allTodos={allTodos}
                                 setAllTodos={setAllTodos}
+                                tasklists={tasklists}
                                 setTasklists={setTasklists}
                             />
                             <ul className="list-group bg-light h-100 taskList">
-                                {allTodos &&
-                                    allTodos.map((todo) => (
-                                        <TodoItem
-                                            key={todo.id}
-                                            {...todo}
-                                            allTodos={allTodos}
-                                            setAllTodos={setAllTodos}
-                                        />
-                                    ))}
+                                {tasklist.items.map((item) => (
+                                    <TodoItem
+                                        key={item.id}
+                                        {...item}
+                                        allTodos={allTodos}
+                                        setAllTodos={setAllTodos}
+                                    />
+                                ))}
                             </ul>
                         </TabPanel>
                     ))}
