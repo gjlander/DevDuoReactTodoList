@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
 
-function TodoItem({ id, done, title, setAllTodos }) {
+function TodoItem({ id, done, title, setAllTodos, hideDone }) {
     const [editing, setEditing] = useState(false);
 
     const toggleEditing = () => {
@@ -21,11 +21,11 @@ function TodoItem({ id, done, title, setAllTodos }) {
     };
     return (
         <li
-            className="list-group-item
+            className={`list-group-item
             d-flex
             justify-content-between
             align-items-center
-            gap-1"
+            gap-1 ${hideDone && done && "d-none"}`}
         >
             {!editing ? (
                 <>
