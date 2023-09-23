@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
-function Tasklist({ allTodos, setAllTodos }) {
+function Tasklist({ allTodos, setAllTodos, tasklists, setTasklists }) {
     const [title, setTitle] = useState("");
 
     return (
@@ -11,35 +11,37 @@ function Tasklist({ allTodos, setAllTodos }) {
             <div className="col col-lg-6">
                 <Tabs>
                     <TabList>
-                        <Tab>Tasks</Tab>
-                        <Tab>Title 2</Tab>
+                        {tasklists.map((tasklist) => (
+                            <Tab key={tasklist.tasklistName} {...tasklist}>
+                                {tasklist.tasklistName}
+                            </Tab>
+                        ))}
                     </TabList>
 
-                    <TabPanel>
-                        <h2 className="display-6">Tasks</h2>
-                        <AddNewTodo
-                            title={title}
-                            setTitle={setTitle}
-                            allTodos={allTodos}
-                            setAllTodos={setAllTodos}
-                        />
-                        <ul className="list-group bg-light h-100 taskList">
-                            {allTodos &&
-                                allTodos.map((todo) => (
-                                    <TodoItem
-                                        key={todo.id}
-                                        {...todo}
-                                        allTodos={allTodos}
-                                        setAllTodos={setAllTodos}
-                                        // editing={editing}
-                                        // setEditing={setEditing}
-                                    />
-                                ))}
-                        </ul>
-                    </TabPanel>
-                    <TabPanel>
-                        <h2>Any content 2</h2>
-                    </TabPanel>
+                    {tasklists.map((tasklist) => (
+                        <TabPanel key={tasklist.id}>
+                            <h2 className="display-6">
+                                {tasklist.tasklistName}
+                            </h2>
+                            <AddNewTodo
+                                title={title}
+                                setTitle={setTitle}
+                                allTodos={allTodos}
+                                setAllTodos={setAllTodos}
+                            />
+                            <ul className="list-group bg-light h-100 taskList">
+                                {allTodos &&
+                                    allTodos.map((todo) => (
+                                        <TodoItem
+                                            key={todo.id}
+                                            {...todo}
+                                            allTodos={allTodos}
+                                            setAllTodos={setAllTodos}
+                                        />
+                                    ))}
+                            </ul>
+                        </TabPanel>
+                    ))}
                 </Tabs>
             </div>
         </div>

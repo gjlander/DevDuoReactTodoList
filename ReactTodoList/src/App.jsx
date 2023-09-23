@@ -23,8 +23,14 @@ function App() {
                     setTasklists={setTasklists}
                     tasklistName={tasklistName}
                     setTasklistName={setTasklistName}
+                    allTodos={allTodos}
                 />
-                <Tasklist allTodos={allTodos} setAllTodos={setAllTodos} />
+                <Tasklist
+                    allTodos={allTodos}
+                    setAllTodos={setAllTodos}
+                    tasklists={tasklists}
+                    setTasklists={setTasklists}
+                />
             </div>
         </>
     );
