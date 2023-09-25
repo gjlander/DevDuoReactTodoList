@@ -3,8 +3,8 @@ function EditForm({
     toggleEditing,
     todoId,
     todoTitle,
-    currentItems,
-    setCurrentItems,
+    // currentItems,
+    // setCurrentItems,
     setTasklists,
     listid,
 }) {
@@ -12,17 +12,31 @@ function EditForm({
     //weird bug where this only works on first two tabs-after that it deletes the next item
     const editTodo = () => {
         //this works but is always one edit behind-async? But why does it work on toggle done then?
-        setCurrentItems((prev) =>
-            prev.map((item) =>
-                item.id === todoId ? { ...item, title: titleEdit } : item
-            )
-        );
+        // setCurrentItems((prev) =>
+        //     prev.map((item) =>
+        //         item.id === todoId ? { ...item, title: titleEdit } : item
+        //     )
+        // );
+        // setTasklists((prev) =>
+        //     prev.map((tasklist) =>
+        //         tasklist.listid === listid
+        //             ? { ...tasklist, items: currentItems }
+        //             : tasklist
+        //     )
+        // );
         setTasklists((prev) =>
-            prev.map((tasklist) =>
-                tasklist.listid === listid
-                    ? { ...tasklist, items: currentItems }
-                    : tasklist
-            )
+            prev.map((tasklist) => {
+                if (tasklist.listid === listid) {
+                    const newItems = tasklist.items.map((item) =>
+                        item.id === todoId
+                            ? { ...item, title: titleEdit }
+                            : item
+                    );
+                    return { ...tasklist, items: newItems };
+                } else {
+                    return tasklist;
+                }
+            })
         );
     };
     return (

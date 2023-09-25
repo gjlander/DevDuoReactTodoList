@@ -47,13 +47,25 @@ function TodoItem({
     };
     const deleteTodo = () => {
         //not sure how to update this without using local useState
-        setCurrentItems((prev) => prev.filter((item) => item.id !== id));
+        // setCurrentItems((prev) => prev.filter((item) => item.id !== id));
+        // setTasklists((prev) =>
+        //     prev.map((tasklist) =>
+        //         tasklist.listid === listid
+        //             ? { ...tasklist, items: currentItems }
+        //             : tasklist
+        //     )
+        // );
         setTasklists((prev) =>
-            prev.map((tasklist) =>
-                tasklist.listid === listid
-                    ? { ...tasklist, items: currentItems }
-                    : tasklist
-            )
+            prev.map((tasklist) => {
+                if (tasklist.listid === listid) {
+                    const newItems = tasklist.items.filter(
+                        (item) => item.id !== id
+                    );
+                    return { ...tasklist, items: newItems };
+                } else {
+                    return tasklist;
+                }
+            })
         );
     };
     return (
