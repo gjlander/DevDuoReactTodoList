@@ -56,7 +56,7 @@ function TodoItem({
                         <input
                             type="checkbox"
                             checked={done}
-                            onClick={toggleDone}
+                            onChange={toggleDone}
                             id={id}
                         />
                         <label
