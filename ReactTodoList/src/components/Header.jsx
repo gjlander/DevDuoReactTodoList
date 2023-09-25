@@ -2,7 +2,7 @@ import AddNewTasklist from "./AddNewTasklist";
 function Header({ tasklistName, setTasklistName, tasklists, setTasklists }) {
     return (
         <div className="row justify-content-center mb-4">
-            <div className="col-8 bg-primary rounded p-3">
+            <div className="col-8 bg-info rounded p-3">
                 <h1 className="display-1 fw-bold mb-4">ToDuo</h1>
                 <AddNewTasklist
                     tasklists={tasklists}
