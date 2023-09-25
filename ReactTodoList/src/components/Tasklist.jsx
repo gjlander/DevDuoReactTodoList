@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import TasklistTitle from "../TasklistTitle";
 import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
+import DeleteTasklist from "./DeleteTasklist";
 function Tasklist({ setTasklists, tasklists }) {
     const [title, setTitle] = useState("");
 
@@ -20,9 +22,10 @@ function Tasklist({ setTasklists, tasklists }) {
 
                     {tasklists.map((tasklist) => (
                         <TabPanel key={tasklist.listid}>
-                            <h2 className="display-6">
-                                {tasklist.tasklistName}
-                            </h2>
+                            <TasklistTitle
+                                {...tasklist}
+                                setTasklists={setTasklists}
+                            />
 
                             <AddNewTodo
                                 title={title}
@@ -41,6 +44,10 @@ function Tasklist({ setTasklists, tasklists }) {
                                     />
                                 ))}
                             </ul>
+                            <DeleteTasklist
+                                setTasklists={setTasklists}
+                                {...tasklist}
+                            />
                         </TabPanel>
                     ))}
                 </Tabs>

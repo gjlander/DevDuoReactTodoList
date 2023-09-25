@@ -1,37 +1,14 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
-function TodoItem({
-    id,
-    done,
-    title,
-    items,
-    setTasklists,
-    listid,
-    //setAllTodos,
-}) {
+function TodoItem({ id, done, title, items, setTasklists, listid }) {
     const [editing, setEditing] = useState(false);
     //idea to grab easier reference to items-resync like I did with Editform
     //think I need a different solution-the async is making my functionalities inconsistent
-    const [currentItems, setCurrentItems] = useState(items);
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
 
-    //bug where it deletes the next item if there is one?
-    //also due to async?
     const toggleDone = () => {
-        // setCurrentItems((prev) =>
-        //     prev.map((item) =>
-        //         item.id === id ? { ...item, done: !item.done } : item
-        //     )
-        // );
-        // setTasklists((prev) =>
-        //     prev.map((tasklist) =>
-        //         tasklist.listid === listid
-        //             ? { ...tasklist, items: currentItems }
-        //             : tasklist
-        //     )
-        // );
         setTasklists((prev) =>
             prev.map((tasklist) => {
                 if (tasklist.listid === listid) {
@@ -46,15 +23,6 @@ function TodoItem({
         );
     };
     const deleteTodo = () => {
-        //not sure how to update this without using local useState
-        // setCurrentItems((prev) => prev.filter((item) => item.id !== id));
-        // setTasklists((prev) =>
-        //     prev.map((tasklist) =>
-        //         tasklist.listid === listid
-        //             ? { ...tasklist, items: currentItems }
-        //             : tasklist
-        //     )
-        // );
         setTasklists((prev) =>
             prev.map((tasklist) => {
                 if (tasklist.listid === listid) {
@@ -82,7 +50,7 @@ function TodoItem({
                         <input
                             type="checkbox"
                             checked={done}
-                            onClick={toggleDone}
+                            onChange={toggleDone}
                             id={id}
                         />
                         <label
@@ -95,14 +63,14 @@ function TodoItem({
                         </label>
                     </div>
                     <button
-                        type="submit"
+                        type="button"
                         className="btn btn-success"
                         onClick={toggleEditing}
                     >
                         Edit
                     </button>
                     <button
-                        type="submit"
+                        type="button"
                         className="btn btn-danger"
                         onClick={deleteTodo}
                     >
@@ -114,8 +82,6 @@ function TodoItem({
                     todoId={id}
                     todoTitle={title}
                     toggleEditing={toggleEditing}
-                    currentItems={currentItems}
-                    setCurrentItems={setCurrentItems}
                     setTasklists={setTasklists}
                     listid={listid}
                 />
