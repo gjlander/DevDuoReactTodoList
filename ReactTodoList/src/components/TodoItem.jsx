@@ -5,14 +5,14 @@ function TodoItem({
     id,
     done,
     title,
-    hideDone,
     items,
     setTasklists,
     listid,
     //setAllTodos,
 }) {
     const [editing, setEditing] = useState(false);
-    //idea to grab easier reference to items-resync like I did with Editform-badly written-breaks the page
+    //idea to grab easier reference to items-resync like I did with Editform
+    //think I need a different solution-the async is making my functionalities inconsistent
     const [currentItems, setCurrentItems] = useState(items);
     const toggleEditing = () => {
         setEditing((prev) => !prev);
@@ -48,11 +48,11 @@ function TodoItem({
     };
     return (
         <li
-            className={`list-group-item
+            className="list-group-item
             d-flex
             justify-content-between
             align-items-center
-            gap-1 ${done && hideDone && "d-none"}`}
+            gap-1"
         >
             {!editing ? (
                 <>

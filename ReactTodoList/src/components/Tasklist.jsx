@@ -9,10 +9,6 @@ function Tasklist({
     tasklists,
 }) {
     const [title, setTitle] = useState("");
-    const [hideDone, setHideDone] = useState(false);
-    const toggleHideDone = () => {
-        setHideDone((prev) => !prev);
-    };
 
     return (
         <div className="row justify-content-center">
@@ -31,17 +27,7 @@ function Tasklist({
                             <h2 className="display-6">
                                 {tasklist.tasklistName}
                             </h2>
-                            <input
-                                type="checkbox"
-                                onClick={toggleHideDone}
-                                // checked={hideDone}
-                                // id="hideDoneBtn"
-                            />
-                            <label
-                            // htmlFor="hideDoneBtn"
-                            >
-                                Hide Done
-                            </label>
+
                             <AddNewTodo
                                 title={title}
                                 setTitle={setTitle}
@@ -57,7 +43,6 @@ function Tasklist({
                                         key={item.id}
                                         {...tasklist}
                                         {...item}
-                                        hideDone={hideDone}
                                         setTasklists={setTasklists}
                                         // allTodos={allTodos}
                                         // setAllTodos={setAllTodos}

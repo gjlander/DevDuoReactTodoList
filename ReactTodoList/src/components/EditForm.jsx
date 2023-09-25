@@ -10,6 +10,7 @@ function EditForm({
     // setAllTodos
 }) {
     const [titleEdit, setTitleEdit] = useState(todoTitle);
+    //weird bug where this only works on first two tabs-after that it deletes the next item
     const editTodo = () => {
         // setAllTodos((prev) =>
         //     prev.map((todo) =>
