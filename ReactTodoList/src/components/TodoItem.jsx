@@ -7,13 +7,14 @@ function TodoItem({
     title,
     hideDone,
     tasklists,
+    items,
     setTasklists,
     listid,
     //setAllTodos,
 }) {
     const [editing, setEditing] = useState(false);
     //idea to grab easier reference to items-resync like I did with Editform-badly written-breaks the page
-    // const [currentItems, setCurrentItems] = useState(tasklists.items);
+    const [currentItems, setCurrentItems] = useState(items);
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
@@ -24,9 +25,7 @@ function TodoItem({
         //         todo.id === id ? { ...todo, done: !todo.done } : todo
         //     )
         // );
-        //untested logic because earlier pieces are broken
-        //version 1-using local useState
-        //how to reference id of item vs tasklist id?
+
         setCurrentItems((prev) =>
             prev.map((item) =>
                 item.id === id ? { ...item, done: !item.done } : item
@@ -35,15 +34,7 @@ function TodoItem({
         setTasklists((prev) =>
             prev.map((tasklist) =>
                 tasklist.listid === listid
-                    ? { ...tasklist, items: currentItems }
-                    : tasklist
-            )
-        );
-        //version 2 without it
-        setTasklists((prev) =>
-            prev.map((tasklist) =>
-                tasklist.items.id === id
-                    ? { ...tasklist.items, done: !tasklist.items.done }
+                    ? { tasklist, items: currentItems }
                     : tasklist
             )
         );

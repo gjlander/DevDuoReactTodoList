@@ -48,7 +48,6 @@ function Tasklist({
                                 setTasklists={setTasklists}
                                 tasklists={tasklists}
                                 {...tasklist}
-                                // listid={listid}
                                 // allTodos={allTodos}
                                 // setAllTodos={setAllTodos}
                             />
@@ -56,6 +55,7 @@ function Tasklist({
                                 {tasklist.items.map((item) => (
                                     <TodoItem
                                         key={item.id}
+                                        {...tasklist}
                                         {...item}
                                         hideDone={hideDone}
                                         setTasklists={setTasklists}
