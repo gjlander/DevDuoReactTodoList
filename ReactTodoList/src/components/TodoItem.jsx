@@ -6,7 +6,6 @@ function TodoItem({
     done,
     title,
     hideDone,
-    tasklists,
     items,
     setTasklists,
     listid,
@@ -20,12 +19,6 @@ function TodoItem({
     };
 
     const toggleDone = () => {
-        // setAllTodos((prev) =>
-        //     prev.map((todo) =>
-        //         todo.id === id ? { ...todo, done: !todo.done } : todo
-        //     )
-        // );
-
         setCurrentItems((prev) =>
             prev.map((item) =>
                 item.id === id ? { ...item, done: !item.done } : item

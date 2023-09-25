@@ -3,6 +3,7 @@ function EditForm({
     toggleEditing,
     todoId,
     todoTitle,
+    currentItems,
     setCurrentItems,
     setTasklists,
     listid,
@@ -16,7 +17,7 @@ function EditForm({
         //     )
         // );
 
-        //again, version with local useState logic for now
+        //this works but is always one edit behind-async? But why does it work on toggle done then?
         setCurrentItems((prev) =>
             prev.map((item) =>
                 item.id === todoId ? { ...item, title: titleEdit } : item
