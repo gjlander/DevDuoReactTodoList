@@ -15,15 +15,15 @@ To Do list project (2/2) #WD043!
 
 
 
-If you'd like to see the current state of our site click [here](https://tmkamal.github.io/under-construction-template/) ♥
+If you'd like to see the current state of our site click [here](https://to-duos.onrender.com/) ♥
 
 Week 2
 <br>
 
 
-<u>Tasks</u> 📃<br>  REACT!
-Add a ToDo item 
-Mark a ToDo item as done
-Edit a ToDo item
-Delete a ToDo item
+<u>Tasks</u> 📃<br>  REACT! <br>
+Add a ToDo item <br>
+Mark a ToDo item as done <br>
+Edit a ToDo item <br>
+Delete a ToDo item <br>
 Persist ToDo items in [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
