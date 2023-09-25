@@ -17,18 +17,32 @@ function TodoItem({
         setEditing((prev) => !prev);
     };
 
+    //bug where it deletes the next item if there is one?
+    //also due to async?
     const toggleDone = () => {
-        setCurrentItems((prev) =>
-            prev.map((item) =>
-                item.id === id ? { ...item, done: !item.done } : item
-            )
-        );
+        // setCurrentItems((prev) =>
+        //     prev.map((item) =>
+        //         item.id === id ? { ...item, done: !item.done } : item
+        //     )
+        // );
+        // setTasklists((prev) =>
+        //     prev.map((tasklist) =>
+        //         tasklist.listid === listid
+        //             ? { ...tasklist, items: currentItems }
+        //             : tasklist
+        //     )
+        // );
         setTasklists((prev) =>
-            prev.map((tasklist) =>
-                tasklist.listid === listid
-                    ? { tasklist, items: currentItems }
-                    : tasklist
-            )
+            prev.map((tasklist) => {
+                if (tasklist.listid === listid) {
+                    const newItems = tasklist.items.map((item) =>
+                        item.id === id ? { ...item, done: !item.done } : item
+                    );
+                    return { ...tasklist, items: newItems };
+                } else {
+                    return tasklist;
+                }
+            })
         );
     };
     const deleteTodo = () => {
@@ -56,7 +70,7 @@ function TodoItem({
                         <input
                             type="checkbox"
                             checked={done}
-                            onChange={toggleDone}
+                            onClick={toggleDone}
                             id={id}
                         />
                         <label
