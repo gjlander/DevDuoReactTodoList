@@ -7,17 +7,10 @@ function EditForm({
     setCurrentItems,
     setTasklists,
     listid,
-    // setAllTodos
 }) {
     const [titleEdit, setTitleEdit] = useState(todoTitle);
     //weird bug where this only works on first two tabs-after that it deletes the next item
     const editTodo = () => {
-        // setAllTodos((prev) =>
-        //     prev.map((todo) =>
-        //         todo.id === todoId ? { ...todo, title: titleEdit } : todo
-        //     )
-        // );
-
         //this works but is always one edit behind-async? But why does it work on toggle done then?
         setCurrentItems((prev) =>
             prev.map((item) =>

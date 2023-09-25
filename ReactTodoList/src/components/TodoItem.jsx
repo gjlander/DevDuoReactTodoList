@@ -1,6 +1,5 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
-//this is what I mean, simply passing id here gave a reference to the id of the current todoitem-why didn't that work for the tasklist id?
 function TodoItem({
     id,
     done,
@@ -33,9 +32,6 @@ function TodoItem({
         );
     };
     const deleteTodo = () => {
-        //old verion
-        // setTasklists((prev) => prev.filter((todo) => todo.id !== id));
-
         //not sure how to update this without using local useState
         setCurrentItems((prev) => prev.filter((item) => item.id !== id));
         setTasklists((prev) =>
@@ -96,7 +92,6 @@ function TodoItem({
                     setCurrentItems={setCurrentItems}
                     setTasklists={setTasklists}
                     listid={listid}
-                    // setAllTodos={setAllTodos}
                 />
             )}
         </li>
