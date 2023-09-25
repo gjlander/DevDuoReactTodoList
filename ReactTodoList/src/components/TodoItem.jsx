@@ -1,23 +1,39 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
-
-function TodoItem({ id, done, title, setAllTodos, hideDone }) {
+function TodoItem({ id, done, title, hideDone, setTasklists, listid }) {
     const [editing, setEditing] = useState(false);
    
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
 
-    const onDelete = () => {
-        //make a new array that filters out only the todo we want to delete
-        setAllTodos((prev) => prev.filter((todo) => todo.id !== id));
-    };
     const toggleDone = () => {
-        setAllTodos ((prev) =>
-        prev.map((todo) =>
-            todo.id === id  ? {...todo, done: !done} : todo
-        )
-      )
+        setTasklists((prev) =>
+            prev.map((tasklist) => {
+                if (tasklist.listid === listid) {
+                    const newItems = tasklist.items.map((item) =>
+                        item.id === id ? { ...item, done: !item.done } : item
+                    );
+                    return { ...tasklist, items: newItems };
+                } else {
+                    return tasklist;
+                }
+            })
+        );
+    };
+    const deleteTodo = () => {
+        setTasklists((prev) =>
+            prev.map((tasklist) => {
+                if (tasklist.listid === listid) {
+                    const newItems = tasklist.items.filter(
+                        (item) => item.id !== id
+                    );
+                    return { ...tasklist, items: newItems };
+                } else {
+                    return tasklist;
+                }
+            })
+        );
     };
     return (
         <li
@@ -33,7 +49,7 @@ function TodoItem({ id, done, title, setAllTodos, hideDone }) {
                         <input
                             type="checkbox"
                             checked={done}
-                            onClick={toggleDone}
+                            onChange={toggleDone}
                             id={id}
                         />
                         <label
@@ -46,13 +62,17 @@ function TodoItem({ id, done, title, setAllTodos, hideDone }) {
                         </label>
                     </div>
                     <button
-                        type="submit"
+                        type="button"
                         className="btn btn-success"
                         onClick={toggleEditing}
                     >
                         Edit
                     </button>
-                    <button type="submit" className="btn btn-danger" onClick={onDelete}>
+                    <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={deleteTodo}
+                    >
                         Delete
                     </button>
                 </>
@@ -60,8 +80,9 @@ function TodoItem({ id, done, title, setAllTodos, hideDone }) {
                 <EditForm
                     todoId={id}
                     todoTitle={title}
-                    setAllTodos={setAllTodos}
                     toggleEditing={toggleEditing}
+                    setTasklists={setTasklists}
+                    listid={listid}
                 />
             )}
         </li>

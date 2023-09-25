@@ -1,42 +1,61 @@
 import { useState } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import TasklistTitle from "./TasklistTitle";
+import HideDone from "./HideDone";
 import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
-function Tasklist({ title, setTitle, handleTitleText, allTodos, setAllTodos }) {
-    const [hideDone, setHideDone] = useState(false);
-    const toggleHideDone = () => {
-        setHideDone((prev) => !prev);
-    };
+import DeleteTasklist from "./DeleteTasklist";
+
+function Tasklist({ setTasklists, tasklists }) {
+    const [title, setTitle] = useState("");
 
     return (
         <div className="row justify-content-center">
             <div className="col col-lg-6">
-                <h2 className="display-6">Tasks</h2>
-                <AddNewTodo
-                    title={title}
-                    setTitle={setTitle}
-                    handleTitleText={handleTitleText}
-                    allTodos={allTodos}
-                    setAllTodos={setAllTodos}
-                />
-                <input
-                    type="checkbox"
-                    // checked={hideDone}
-                    onClick={toggleHideDone}
-                    id="hideDoneBtn"
-                />
-                <label htmlFor="hideDoneBtn">Hide Done</label>
-                <ul className="list-group bg-light h-100 taskList">
-                    {allTodos &&
-                        allTodos.map((todo) => (
-                            <TodoItem
-                                key={todo.id}
-                                {...todo}
-                                allTodos={allTodos}
-                                setAllTodos={setAllTodos}
-                                hideDone={hideDone}
-                            />
+                <Tabs>
+                    <TabList>
+                        {tasklists.map((tasklist) => (
+                            <Tab key={tasklist.tabkey}>
+                                {tasklist.tasklistName}
+                            </Tab>
                         ))}
-                </ul>
+                    </TabList>
+
+                    {tasklists.map((tasklist) => (
+                        <TabPanel key={tasklist.listid}>
+                            <TasklistTitle
+                                {...tasklist}
+                                setTasklists={setTasklists}
+                            />
+                            <HideDone
+                                {...tasklist}
+                                setTasklists={setTasklists}
+                            />
+                            <AddNewTodo
+                                title={title}
+                                setTitle={setTitle}
+                                setTasklists={setTasklists}
+                                tasklists={tasklists}
+                                {...tasklist}
+                            />
+                            <ul className="list-group bg-light h-100 taskList">
+                                {tasklist.items.map((item) => (
+                                    <TodoItem
+                                        key={item.id}
+                                        {...tasklist}
+                                        {...item}
+                                        setTasklists={setTasklists}
+                                    />
+                                ))}
+                            </ul>
+                            <DeleteTasklist
+                                setTasklists={setTasklists}
+                                {...tasklist}
+                            />
+                        </TabPanel>
+                    ))}
+                </Tabs>
             </div>
         </div>
     );

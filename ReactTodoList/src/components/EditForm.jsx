@@ -1,14 +1,20 @@
 import { useState } from "react";
-function EditForm({ toggleEditing, todoId, todoTitle, setAllTodos }) {
-    //doing it the dangerous async way so that the edit doesn't take place until submit
+function EditForm({ toggleEditing, todoId, todoTitle, setTasklists, listid }) {
     const [titleEdit, setTitleEdit] = useState(todoTitle);
     const editTodo = () => {
-        // here we find the todo in question, and update allTodos by changing the title of a single todo object
-        //and sync it bck up with titleEdit
-        setAllTodos((prev) =>
-            prev.map((todo) =>
-                todo.id === todoId ? { ...todo, title: titleEdit } : todo
-            )
+        setTasklists((prev) =>
+            prev.map((tasklist) => {
+                if (tasklist.listid === listid) {
+                    const newItems = tasklist.items.map((item) =>
+                        item.id === todoId
+                            ? { ...item, title: titleEdit }
+                            : item
+                    );
+                    return { ...tasklist, items: newItems };
+                } else {
+                    return tasklist;
+                }
+            })
         );
     };
     return (
@@ -26,11 +32,7 @@ function EditForm({ toggleEditing, todoId, todoTitle, setAllTodos }) {
                 value={titleEdit}
                 onChange={(e) => setTitleEdit(e.target.value)}
             />
-            <button
-                type="submit"
-                className="btn btn-success"
-                // onClick={toggleEditing}
-            >
+            <button type="submit" className="btn btn-success">
                 Confirm
             </button>
             <button
