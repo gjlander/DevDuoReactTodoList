@@ -16,6 +16,7 @@ export default function AddNewTasklist({
                 //items: [...allTodos]
                 items: [],
                 listid: crypto.randomUUID(),
+                tabkey: crypto.randomUUID(),
             },
         ];
         setTasklists(newTasklists);
