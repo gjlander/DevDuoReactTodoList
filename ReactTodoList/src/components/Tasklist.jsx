@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import TasklistTitle from "../TasklistTitle";
+import TasklistTitle from "./TasklistTitle";
+import HideDone from "./HideDone";
 import AddNewTodo from "./AddNewTodo";
 import TodoItem from "./TodoItem";
 import DeleteTasklist from "./DeleteTasklist";
+
 function Tasklist({ setTasklists, tasklists }) {
     const [title, setTitle] = useState("");
 
@@ -26,7 +28,10 @@ function Tasklist({ setTasklists, tasklists }) {
                                 {...tasklist}
                                 setTasklists={setTasklists}
                             />
-
+                            <HideDone
+                                {...tasklist}
+                                setTasklists={setTasklists}
+                            />
                             <AddNewTodo
                                 title={title}
                                 setTitle={setTitle}

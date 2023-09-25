@@ -13,6 +13,7 @@ export default function AddNewTasklist({
             {
                 tasklistName,
                 items: [],
+                hideDone: false,
                 listid: crypto.randomUUID(),
                 tabkey: crypto.randomUUID(),
             },
@@ -31,8 +32,8 @@ export default function AddNewTasklist({
                 type="text"
                 className="form-control"
                 id="textForNewTodo"
-                placeholder="Make a new tasklist..."
-                aria-label="Make a new tasklist..."
+                placeholder="Make a new ToDuo list..."
+                aria-label="Make a new ToDuo list..."
                 aria-describedby="button-addon2"
                 onChange={(e) => handleNewTasklistText(e)}
                 value={tasklistName}

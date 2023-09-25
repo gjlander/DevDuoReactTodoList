@@ -1,9 +1,8 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
-function TodoItem({ id, done, title, items, setTasklists, listid }) {
+function TodoItem({ id, done, title, hideDone, setTasklists, listid }) {
     const [editing, setEditing] = useState(false);
-    //idea to grab easier reference to items-resync like I did with Editform
-    //think I need a different solution-the async is making my functionalities inconsistent
+
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     };
@@ -38,11 +37,11 @@ function TodoItem({ id, done, title, items, setTasklists, listid }) {
     };
     return (
         <li
-            className="list-group-item
+            className={`list-group-item
             d-flex
             justify-content-between
             align-items-center
-            gap-1"
+            gap-1 ${hideDone && done && "d-none"}`}
         >
             {!editing ? (
                 <>

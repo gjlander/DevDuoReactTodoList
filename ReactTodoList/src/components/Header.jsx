@@ -3,7 +3,7 @@ function Header({ tasklistName, setTasklistName, tasklists, setTasklists }) {
     return (
         <div className="row justify-content-center mb-4">
             <div className="col-8 bg-primary rounded p-3">
-                <h1 className="display-4 fw-bold">To Do List</h1>
+                <h1 className="display-1 fw-bold mb-4">ToDuo</h1>
                 <AddNewTasklist
                     tasklists={tasklists}
                     setTasklists={setTasklists}

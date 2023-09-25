@@ -34,8 +34,8 @@ function AddNewTodo({ title, setTitle, setTasklists, listid, items }) {
                 type="text"
                 className="form-control"
                 id="textForNewTodo"
-                placeholder="Add a new task..."
-                aria-label="Add a new task..."
+                placeholder="Add a new item..."
+                aria-label="Add a new item..."
                 aria-describedby="button-addon2"
                 onChange={handleTitleText}
                 value={title}
